@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+        .container
+        {
+            background-color: lightskyblue;
+            color:black;
+            
+            width: 50%;
+            text-align: center;
+            border-color: green;
+            border-style: inset;
+            border-width: 12px;
+            height: 250px;
+        }
+        .btn
+        {
+            background-color: green;
+            font-size: 20px;
+            color: white;
+        }
+        </style>  
+        <script>
+            function calculateAge() {
+                const birthdate = document.getElementById("birthdate").value;
+                const resultElement = document.getElementById("result");
+    
+                if (!birthdate) {
+                    resultElement.textContent = "Please select a valid date.";
+                    resultElement.style.color = "red";
+                    return;
+                }
+    
+                const birthDateObj = new Date(birthdate);
+                const today = new Date();
+    
+                // Calculate year, month, and day differences
+                let years = today.getFullYear() - birthDateObj.getFullYear();
+                let months = today.getMonth() - birthDateObj.getMonth();
+                let days = today.getDate() - birthDateObj.getDate();
+    
+                if (days < 0) {
+                    months--;
+                    days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+                }
+    
+                if (months < 0) {
+                    years--;
+                    months += 12;
+                }
+    
+                resultElement.textContent = `You are ${years} years, ${months} months, and ${days} days old.`;
+                resultElement.style.color = "green";
+            }
+        </script>
+    </head>
+    <body>
+        <center>
+            <div class="container">
+            <h1>AGE CALCULATOR</h1>
+          <input type="date" id="birthdate"><br><br>
+          <input type="button" class="btn" value="Calculate Age" onclick="calculateAge()">
+          <p id="result"></p>
+        </div> 
+    </center>
+    </body>
+</html>
